@@ -13,7 +13,7 @@ const Tablefaqquestion = () => {
   useEffect(() => {
     // Fetch FAQ questions from the API
     axios
-      .get("http://api.pnytrainings.com/api/faquestion")
+      .get("https://www.api.pnytrainings.com/api/faquestion")
       .then((response) => setFaqQuestions(response.data))
       .catch((error) => console.error("Error fetching FAQ questions:", error));
   }, []);
@@ -24,7 +24,9 @@ const Tablefaqquestion = () => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://api.pnytrainings.com/api/faquestion/${id}`);
+      await axios.delete(
+        `https://www.api.pnytrainings.com/api/faquestion/${id}`
+      );
       setFaqQuestions(faqQuestions.filter((question) => question._id !== id));
     } catch (error) {
       console.error("Error deleting FAQ question:", error);

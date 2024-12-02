@@ -16,7 +16,7 @@ const Freetrail = () => {
   console.log(freeTrials);
   useEffect(() => {
     axios
-      .get("http://api.pnytrainings.com/api/freetrial")
+      .get("https://www.api.pnytrainings.com/api/freetrial")
       .then((response) => {
         setFreeTrials(response.data);
         setFilteredTrials(response.data); // Initially show all data
@@ -46,7 +46,7 @@ const Freetrail = () => {
   const handleDelete = async (trialId) => {
     try {
       await axios.delete(
-        `http://api.pnytrainings.com/api/freetrial/${trialId}`
+        `https://www.api.pnytrainings.com/api/freetrial/${trialId}`
       );
       const updatedTrials = freeTrials.filter((item) => item._id !== trialId);
       setFreeTrials(updatedTrials);

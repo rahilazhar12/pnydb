@@ -18,7 +18,7 @@ const CourseCategories = () => {
       try {
         setLoading(true);
         const response = await axios.get(
-          "http://api.pnytrainings.com/api/categories",
+          "https://www.api.pnytrainings.com/api/categories",
           { withCredentials: true }
         );
         setCategories(response.data);
@@ -49,7 +49,7 @@ const CourseCategories = () => {
     if (!window.confirm("Are you sure you want to delete this category?"))
       return;
     axios
-      .delete(`http://api.pnytrainings.com/api/categories/${id}`, {
+      .delete(`https://www.api.pnytrainings.com/api/categories/${id}`, {
         withCredentials: true,
       })
       .then(() => {
@@ -74,7 +74,7 @@ const CourseCategories = () => {
 
     axios
       .put(
-        `http://api.pnytrainings.com/api/categories/${id}`,
+        `https://www.api.pnytrainings.com/api/categories/${id}`,
         { status: updatedStatus },
         { withCredentials: true }
       )

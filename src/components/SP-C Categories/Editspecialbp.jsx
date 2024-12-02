@@ -24,7 +24,7 @@ const Editspecialbp = () => {
     const fetchPostData = async () => {
       try {
         const response = await axios.get(
-          `http://api.pnytrainings.com/api/specialcatblog/${id}`
+          `https://www.api.pnytrainings.com/api/specialcatblog/${id}`
         );
         setPostData(response.data); // Populate form with existing post data
       } catch (error) {
@@ -55,7 +55,7 @@ const Editspecialbp = () => {
     e.preventDefault();
     try {
       await axios.put(
-        `http://api.pnytrainings.com/api/specialcatblog/${id}`,
+        `https://www.api.pnytrainings.com/api/specialcatblog/${id}`,
         postData
       );
       navigate("/sp-c-blog-post"); // Redirect back to the list after successful edit

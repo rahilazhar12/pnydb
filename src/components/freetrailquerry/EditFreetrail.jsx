@@ -14,7 +14,7 @@ const EditFreetrail = () => {
 
   useEffect(() => {
     axios
-      .get(`http://api.pnytrainings.com/api/gallery/${id}`)
+      .get(`https://www.api.pnytrainings.com/api/gallery/${id}`)
       .then((response) => {
         const gallery = response.data;
         setGalleryTitle(gallery.galleryTitle);
@@ -27,7 +27,7 @@ const EditFreetrail = () => {
 
   const handleUpdate = async () => {
     try {
-      await axios.put(`http://api.pnytrainings.com/api/gallery/${id}`, {
+      await axios.put(`https://www.api.pnytrainings.com/api/gallery/${id}`, {
         galleryTitle,
         coverImage,
         isViewable,

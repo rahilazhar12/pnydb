@@ -16,7 +16,7 @@ const UsersTable = () => {
     const fetchInstructors = async () => {
       try {
         const response = await axios.get(
-          "http://api.pnytrainings.com/api/instructors"
+          "https://www.api.pnytrainings.com/api/instructors"
         );
         console.log(response.data); // Log fetched users
         setUsers(response.data);
@@ -44,7 +44,9 @@ const UsersTable = () => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://api.pnytrainings.com/api/instructors/${id}`);
+      await axios.delete(
+        `https://www.api.pnytrainings.com/api/instructors/${id}`
+      );
       setFilteredUsers(filteredUsers.filter((user) => user._id !== id));
     } catch (error) {
       console.error("Failed to delete user", error);
@@ -131,7 +133,7 @@ const UsersTable = () => {
                         <img
                           src={
                             user.photo
-                              ? `http://api.pnytrainings.com/${user.photo.replace(
+                              ? `https://www.api.pnytrainings.com/${user.photo.replace(
                                   /\\/g,
                                   "/"
                                 )}`

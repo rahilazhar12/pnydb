@@ -15,7 +15,7 @@ const EditSpecialcat = () => {
     const fetchCategoryDetails = async () => {
       try {
         const response = await axios.get(
-          `http://api.pnytrainings.com/api/citycategory/${id}`
+          `https://www.api.pnytrainings.com/api/citycategory/${id}`
         );
         console.log("API Response:", response.data); // Debugging: check the response
         setCategoryData({
@@ -41,7 +41,7 @@ const EditSpecialcat = () => {
     e.preventDefault();
     try {
       await axios.put(
-        `http://api.pnytrainings.com/api/citycategory/${id}`,
+        `https://www.api.pnytrainings.com/api/citycategory/${id}`,
         categoryData
       );
       navigate("/sp-c-categories"); // Redirect to categories page after successful edit

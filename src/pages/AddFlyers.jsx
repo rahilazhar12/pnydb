@@ -22,7 +22,7 @@ const AddFlyers = () => {
       );
       try {
         const response = await fetch(
-          "http://api.pnytrainings.com/api/categories"
+          "https://www.api.pnytrainings.com/api/categories"
         );
         if (!response.ok) {
           throw new Error("Failed to fetch categories");
@@ -36,7 +36,9 @@ const AddFlyers = () => {
 
     const fetchCourses = async () => {
       try {
-        const response = await fetch("http://api.pnytrainings.com/api/courses");
+        const response = await fetch(
+          "https://www.api.pnytrainings.com/api/courses"
+        );
         if (!response.ok) {
           throw new Error("Failed to fetch courses");
         }
@@ -67,10 +69,13 @@ const AddFlyers = () => {
 
     try {
       console.log(formData);
-      const response = await fetch("http://api.pnytrainings.com/api/eflyer", {
-        method: "POST",
-        body: formData,
-      });
+      const response = await fetch(
+        "https://www.api.pnytrainings.com/api/eflyer",
+        {
+          method: "POST",
+          body: formData,
+        }
+      );
       console.log(response);
       if (!response.ok) {
         const errorText = await response.text(); // Get the error response body

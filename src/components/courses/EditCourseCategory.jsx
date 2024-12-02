@@ -13,7 +13,7 @@ const EditCourseCategory = () => {
   useEffect(() => {
     // Fetch the category data based on the ID
     axios
-      .get(`http://api.pnytrainings.com/api/categories/${id}`, {
+      .get(`https://www.api.pnytrainings.com/api/categories/${id}`, {
         withCredentials: true,
       })
       .then((response) => {
@@ -44,7 +44,7 @@ const EditCourseCategory = () => {
   const handleUpdate = (e) => {
     e.preventDefault();
     axios
-      .put(`http://api.pnytrainings.com/api/categories/${id}`, category, {
+      .put(`https://www.api.pnytrainings.com/api/categories/${id}`, category, {
         withCredentials: true,
       })
       .then(() => {

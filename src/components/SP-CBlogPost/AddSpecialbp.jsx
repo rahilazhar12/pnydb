@@ -31,7 +31,7 @@ const AddSpecialbp = () => {
     const fetchCityCategories = async () => {
       try {
         const response = await axios.get(
-          "http://api.pnytrainings.com/api/citycategory"
+          "https://www.api.pnytrainings.com/api/citycategory"
         );
         setCityCategories(response.data);
         console.log(response.data);
@@ -64,7 +64,7 @@ const AddSpecialbp = () => {
 
     try {
       const res = await axios.post(
-        "http://api.pnytrainings.com/api/specialcatblog",
+        "https://www.api.pnytrainings.com/api/specialcatblog",
         formSubmitData,
         {
           headers: {

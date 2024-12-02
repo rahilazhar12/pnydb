@@ -15,7 +15,7 @@ const Eflayer = () => {
     const fetchEflyers = async () => {
       try {
         const response = await axios.get(
-          "http://api.pnytrainings.com/api/eflyer"
+          "https://www.api.pnytrainings.com/api/eflyer"
         );
         setEflyers(response.data); // Set fetched data
         setFilteredEflyers(response.data); // Initialize filtered data
@@ -46,7 +46,7 @@ const Eflayer = () => {
   const handleDelete = async (id) => {
     // Track the ID being deleted
     try {
-      await axios.delete(`http://api.pnytrainings.com/api/eflyer/${id}`);
+      await axios.delete(`https://www.api.pnytrainings.com/api/eflyer/${id}`);
       // Remove the deleted eFlyer from both states
       const updatedEflyers = eflyers.filter((eflyer) => eflyer._id !== id);
       setEflyers(updatedEflyers);

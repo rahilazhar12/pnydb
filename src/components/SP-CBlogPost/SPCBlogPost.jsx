@@ -17,7 +17,7 @@ const SPCBlogPost = () => {
     const fetchBlogPosts = async () => {
       try {
         const response = await axios.get(
-          "http://api.pnytrainings.com/api/specialcatblog"
+          "https://www.api.pnytrainings.com/api/specialcatblog"
         );
         setBlogPosts(response.data); // Assuming response contains an array of blog posts
         setFilteredPosts(response.data); // Set filtered posts initially to the full list
@@ -42,7 +42,7 @@ const SPCBlogPost = () => {
   const handleDelete = async (postId) => {
     try {
       await axios.delete(
-        `http://api.pnytrainings.com/api/specialcatblog/${postId}`
+        `https://www.api.pnytrainings.com/api/specialcatblog/${postId}`
       );
       setBlogPosts(blogPosts.filter((post) => post._id !== postId)); // Update the posts after deletion
       setFilteredPosts(filteredPosts.filter((post) => post._id !== postId)); // Update the filtered posts
@@ -141,7 +141,7 @@ const SPCBlogPost = () => {
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
                       <img
-                        src={`http://api.pnytrainings.com/${post.postThumbnailImage}`}
+                        src={`https://www.api.pnytrainings.com/${post.postThumbnailImage}`}
                         alt={post.postTitle}
                         className="h-10 w-10 rounded-full"
                       />

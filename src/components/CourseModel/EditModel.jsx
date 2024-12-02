@@ -22,7 +22,7 @@ const EditModel = () => {
     const fetchCourseModel = async () => {
       try {
         const response = await axios.get(
-          `http://api.pnytrainings.com/api/coursemodel/${id}`
+          `https://www.api.pnytrainings.com/api/coursemodel/${id}`
         );
         const { course, courseModulePosition, textEditor, status } =
           response.data;
@@ -41,7 +41,7 @@ const EditModel = () => {
     const fetchCourses = async () => {
       try {
         const response = await axios.get(
-          "http://api.pnytrainings.com/api/courses"
+          "https://www.api.pnytrainings.com/api/courses"
         );
         setCourseList(response.data); // Assuming the API returns a list of courses
       } catch (error) {
@@ -87,7 +87,7 @@ const EditModel = () => {
       console.log("Updated Model to be sent:", updatedModel);
 
       await axios.put(
-        `http://api.pnytrainings.com/api/coursemodel/${id}`,
+        `https://www.api.pnytrainings.com/api/coursemodel/${id}`,
         updatedModel,
         {
           headers: { "Content-Type": "application/json" },

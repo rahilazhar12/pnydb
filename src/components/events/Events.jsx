@@ -12,7 +12,7 @@ const Events = () => {
   console.log(events);
   useEffect(() => {
     axios
-      .get("http://api.pnytrainings.com/api/events")
+      .get("https://www.api.pnytrainings.com/api/events")
       .then((response) => {
         setEvents(response.data);
         setFilteredEvents(response.data);
@@ -35,7 +35,9 @@ const Events = () => {
 
   const handleDelete = async (eventId) => {
     try {
-      await axios.delete(`http://api.pnytrainings.com/api/events/${eventId}`);
+      await axios.delete(
+        `https://www.api.pnytrainings.com/api/events/${eventId}`
+      );
       const updatedEvents = events.filter((item) => item._id !== eventId);
       setEvents(updatedEvents);
       setFilteredEvents(updatedEvents);
@@ -108,7 +110,7 @@ const Events = () => {
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap">
                   <img
-                    src={`http://api.pnytrainings.com/${event.image.replace(
+                    src={`https://www.api.pnytrainings.com/${event.image.replace(
                       /\\/g,
                       "/"
                     )}`}

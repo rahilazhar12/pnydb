@@ -23,7 +23,7 @@ const EditBlogcat = () => {
       }
       try {
         const response = await axios.get(
-          `http://api.pnytrainings.com/api/blogcate/${id}`
+          `https://www.api.pnytrainings.com/api/blogcate/${id}`
         );
         console.log("Fetched category:", response.data); // Log fetched category data
         setCategory(response.data);
@@ -49,7 +49,7 @@ const EditBlogcat = () => {
     e.preventDefault();
     try {
       await axios.put(
-        `http://api.pnytrainings.com/api/blogcate/${id}`,
+        `https://www.api.pnytrainings.com/api/blogcate/${id}`,
         category
       );
       navigate("/blog-categories"); // Redirect to blog categories after successful edit

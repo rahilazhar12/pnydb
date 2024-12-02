@@ -32,9 +32,13 @@ const AddEventsCategory = () => {
     formData.append("customCanonicalUrl", customCanonicalUrl);
 
     try {
-      await axios.post("http://api.pnytrainings.com/api/faqcat", formData, {
-        headers: { "Content-Type": "multipart/form-data" },
-      });
+      await axios.post(
+        "https://www.api.pnytrainings.com/api/faqcat",
+        formData,
+        {
+          headers: { "Content-Type": "multipart/form-data" },
+        }
+      );
       navigate("/faqs"); // Redirect after successful submission
     } catch (error) {
       console.error("Error adding FAQ category:", error);

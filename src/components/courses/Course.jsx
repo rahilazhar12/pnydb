@@ -16,7 +16,7 @@ const Courses = () => {
   const fetchCourses = async () => {
     try {
       const response = await axios.get(
-        "http://api.pnytrainings.com/api/courses"
+        "https://www.api.pnytrainings.com/api/courses"
       );
       setCourses(response.data);
       // Set both courses and filteredCourses initially
@@ -35,7 +35,7 @@ const Courses = () => {
 
     // Send delete request to API with credentials
     axios
-      .delete(`http://api.pnytrainings.com/api/courses/${id}`, {
+      .delete(`https://www.api.pnytrainings.com/api/courses/${id}`, {
         withCredentials: true,
       })
       .then(() => {
@@ -75,7 +75,7 @@ const Courses = () => {
   // const handleUpdate = (updatedData) => {
   //   const { _id } = updatedData;
   //   axios
-  //     .put(`http://api.pnytrainings.com/api/courses/${_id}`, updatedData, { withCredentials: true }) // Add withCredentials
+  //     .put(`https://www.api.pnytrainings.com/api/courses/${_id}`, updatedData, { withCredentials: true }) // Add withCredentials
   //     .then(() => {
   //       // Update the local state with the updated category
   //       const updatedCategories =filteredCourses.map((category) =>
@@ -185,7 +185,7 @@ const Courses = () => {
                       <td className="px-6 py-4 whitespace-nowrap">
                         <span className="px-2 inline-flex text-xs leading-5 font-semibold text-blue-100">
                           <img
-                            src={`http://api.pnytrainings.com/${course.course_Image.replace(
+                            src={`https://www.api.pnytrainings.com/${course.course_Image.replace(
                               /\\/g,
                               "/"
                             )}`}

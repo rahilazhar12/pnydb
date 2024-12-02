@@ -23,7 +23,7 @@ const SPCategories = () => {
     const fetchCityCategories = async () => {
       try {
         const response = await axios.get(
-          "http://api.pnytrainings.com/api/citycategory"
+          "https://www.api.pnytrainings.com/api/citycategory"
         );
         setCityCategories(response.data);
         setFilteredCategories(response.data); // Set both states initially
@@ -37,7 +37,7 @@ const SPCategories = () => {
   const handleDelete = async (id) => {
     try {
       const response = await axios.delete(
-        `http://api.pnytrainings.com/api/citycategory/${id}`
+        `https://www.api.pnytrainings.com/api/citycategory/${id}`
       );
       const updatedCategories = cityCategories.filter(
         (category) => category._id !== id

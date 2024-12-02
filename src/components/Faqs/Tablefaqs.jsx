@@ -13,7 +13,7 @@ const Tablefaqs = () => {
   useEffect(() => {
     // Fetch FAQ categories from the API
     axios
-      .get("http://api.pnytrainings.com/api/faqcat")
+      .get("https://www.api.pnytrainings.com/api/faqcat")
       .then((response) => setFaqCategories(response.data))
       .catch((error) => console.error("Error fetching FAQ categories:", error));
   }, []);
@@ -26,7 +26,7 @@ const Tablefaqs = () => {
   const handleDelete = async (categoryId) => {
     try {
       await axios.delete(
-        `http://api.pnytrainings.com/api/faqcat/${categoryId}`
+        `https://www.api.pnytrainings.com/api/faqcat/${categoryId}`
       );
       setFaqCategories(
         faqCategories.filter((category) => category._id !== categoryId)

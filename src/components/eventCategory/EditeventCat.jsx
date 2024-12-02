@@ -9,7 +9,7 @@ const EditEventCategory = () => {
 
   useEffect(() => {
     axios
-      .get(`http://api.pnytrainings.com/api/event/${id}`)
+      .get(`https://www.api.pnytrainings.com/api/event/${id}`)
       .then((response) => setEvent(response.data))
       .catch((error) => console.error("Error fetching event:", error));
   }, [id]);
@@ -22,7 +22,10 @@ const EditEventCategory = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.put(`http://api.pnytrainings.com/api/event/${id}`, event);
+      await axios.put(
+        `https://www.api.pnytrainings.com/api/event/${id}`,
+        event
+      );
       navigate("/eventcat"); // Redirect back to the EventCategory page
     } catch (error) {
       console.error("Error updating event:", error);

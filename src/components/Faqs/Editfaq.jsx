@@ -9,7 +9,7 @@ const EditFaq = () => {
 
   useEffect(() => {
     axios
-      .get(`http://api.pnytrainings.com/api/faqcat/${id}`)
+      .get(`https://www.api.pnytrainings.com/api/faqcat/${id}`)
       .then((response) => {
         setCategoryName(response.data.categoryName);
       })
@@ -18,7 +18,7 @@ const EditFaq = () => {
 
   const handleUpdate = async () => {
     try {
-      await axios.put(`http://api.pnytrainings.com/api/faqcat/${id}`, {
+      await axios.put(`https://www.api.pnytrainings.com/api/faqcat/${id}`, {
         categoryName,
       });
       navigate("/faqs"); // Redirect after update

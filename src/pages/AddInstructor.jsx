@@ -21,7 +21,7 @@ const AddInstructor = () => {
 
     try {
       const response = await axios.post(
-        "http://api.pnytrainings.com/api/instructors",
+        "https://www.api.pnytrainings.com/api/instructors",
         formData,
         {
           headers: {

@@ -15,7 +15,7 @@ const AddModel = () => {
     const fetchCourses = async () => {
       try {
         const response = await axios.get(
-          "http://api.pnytrainings.com/api/courses"
+          "https://www.api.pnytrainings.com/api/courses"
         );
         setCourses(response.data); // Set courses from API response
       } catch (error) {
@@ -39,9 +39,13 @@ const AddModel = () => {
 
     try {
       // Send POST request to backend
-      await axios.post("http://api.pnytrainings.com/api/coursemodel", payload, {
-        headers: { "Content-Type": "application/json" },
-      });
+      await axios.post(
+        "https://www.api.pnytrainings.com/api/coursemodel",
+        payload,
+        {
+          headers: { "Content-Type": "application/json" },
+        }
+      );
       navigate("/coursemodel"); // Redirect after successful submission
     } catch (error) {
       console.error("Error adding Course Model:", error);

@@ -11,7 +11,7 @@ const EditInstructor = () => {
     const fetchInstructor = async () => {
       try {
         const response = await axios.get(
-          `http://api.pnytrainings.com/api/instructors/${userId}`
+          `https://www.api.pnytrainings.com/api/instructors/${userId}`
         );
         console.log("Fetched Instructor Data:", response.data);
 
@@ -32,7 +32,7 @@ const EditInstructor = () => {
 
     try {
       await axios.put(
-        `http://api.pnytrainings.com/api/instructors/${userId}`,
+        `https://www.api.pnytrainings.com/api/instructors/${userId}`,
         instructor,
         {
           headers: {

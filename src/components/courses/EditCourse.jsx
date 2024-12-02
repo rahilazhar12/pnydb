@@ -41,8 +41,8 @@ const EditCourse = () => {
     const fetchData = async () => {
       try {
         const [courseResponse, categoriesResponse] = await Promise.all([
-          axios.get(`http://api.pnytrainings.com/api/courses/${courseId}`),
-          axios.get(`http://api.pnytrainings.com/api/categories`),
+          axios.get(`https://www.api.pnytrainings.com/api/courses/${courseId}`),
+          axios.get(`https://www.api.pnytrainings.com/api/categories`),
         ]);
         setCourse(courseResponse.data);
         setCategories(categoriesResponse.data);
@@ -74,7 +74,7 @@ const EditCourse = () => {
     if (brochureFile) formData.append("Brochure", brochureFile);
     try {
       await axios.put(
-        `http://api.pnytrainings.com/api/courses/${courseId}`,
+        `https://www.api.pnytrainings.com/api/courses/${courseId}`,
         formData,
         {
           headers: { "Content-Type": "multipart/form-data" },

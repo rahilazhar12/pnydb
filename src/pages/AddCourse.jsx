@@ -20,7 +20,7 @@ const AddCourse = () => {
   const [brochure, setBrochure] = useState(null); // State for brochure file
   // Fetch categories
   const fetchCategories = () => {
-    fetch("http://api.pnytrainings.com/api/categories")
+    fetch("https://www.api.pnytrainings.com/api/categories")
       .then((response) => response.json())
       .then((data) => setCategories(data))
       .catch((error) => console.error("Error fetching categories:", error));
@@ -28,7 +28,7 @@ const AddCourse = () => {
 
   // Fetch instructors
   const fetchInstructors = () => {
-    fetch("http://api.pnytrainings.com/api/instructors")
+    fetch("https://www.api.pnytrainings.com/api/instructors")
       .then((response) => response.json())
       .then((data) => setInstructors(data))
       .catch((error) => console.error("Error fetching instructors:", error));
@@ -74,7 +74,7 @@ const AddCourse = () => {
 
     try {
       const response = await axios.post(
-        "http://api.pnytrainings.com/api/courses",
+        "https://www.api.pnytrainings.com/api/courses",
         formData,
         {
           headers: {

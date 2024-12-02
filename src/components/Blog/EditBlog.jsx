@@ -15,7 +15,7 @@ const EditBlog = () => {
     const fetchBlog = async () => {
       try {
         const response = await axios.get(
-          `http://api.pnytrainings.com/api/blogpost/${id}`
+          `https://www.api.pnytrainings.com/api/blogpost/${id}`
         );
         setFormData({
           postTitle: response.data.postTitle,
@@ -42,7 +42,7 @@ const EditBlog = () => {
     e.preventDefault();
     try {
       await axios.put(
-        `http://api.pnytrainings.com/api/blogpost/${id}`,
+        `https://www.api.pnytrainings.com/api/blogpost/${id}`,
         formData
       );
       // Redirect after successful edit

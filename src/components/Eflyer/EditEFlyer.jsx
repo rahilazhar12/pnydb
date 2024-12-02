@@ -25,7 +25,7 @@ const EditEFlyer = () => {
       try {
         // Fetch eFlyer details
         const eflyerResponse = await axios.get(
-          `http://api.pnytrainings.com/api/eflyer/${id}`
+          `https://www.api.pnytrainings.com/api/eflyer/${id}`
         );
         const eflyerData = eflyerResponse.data;
 
@@ -38,8 +38,8 @@ const EditEFlyer = () => {
 
         // Fetch all categories and courses
         const [categoriesResponse, coursesResponse] = await Promise.all([
-          axios.get("http://api.pnytrainings.com/api/categories"),
-          axios.get("http://api.pnytrainings.com/api/courses"),
+          axios.get("https://www.api.pnytrainings.com/api/categories"),
+          axios.get("https://www.api.pnytrainings.com/api/courses"),
         ]);
 
         setCategories(categoriesResponse.data);
@@ -64,7 +64,7 @@ const EditEFlyer = () => {
       };
 
       const response = await axios.put(
-        `http://api.pnytrainings.com/api/eflyer/${id}`,
+        `https://www.api.pnytrainings.com/api/eflyer/${id}`,
         updatedEFlyer,
         { withCredentials: true }
       );

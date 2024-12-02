@@ -22,7 +22,7 @@ const AddBlog = () => {
     const fetchCategories = async () => {
       try {
         const response = await axios.get(
-          "http://api.pnytrainings.com/api/blogcate"
+          "https://www.api.pnytrainings.com/api/blogcate"
         );
         console.log("Fetched Categories:", response.data); // Log fetched categories
         setCategories(response.data); // Assuming response.data is an array of categories
@@ -54,7 +54,7 @@ const AddBlog = () => {
       };
       console.log(requestData);
       const res = await axios.post(
-        "http://api.pnytrainings.com/api/blogpost",
+        "https://www.api.pnytrainings.com/api/blogpost",
         requestData
       );
       if (res.status === 200) {

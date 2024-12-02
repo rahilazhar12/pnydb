@@ -9,7 +9,7 @@ const Editfaquestion = () => {
   console.log(categoryName);
   useEffect(() => {
     axios
-      .get(`http://api.pnytrainings.com/api/faquestion/${id}`)
+      .get(`https://www.api.pnytrainings.com/api/faquestion/${id}`)
       .then((response) => {
         setCategoryName(response.data.categoryName);
       })
@@ -18,7 +18,7 @@ const Editfaquestion = () => {
 
   const handleUpdate = async () => {
     try {
-      await axios.put(`http://api.pnytrainings.com/api/faquestion/${id}`, {
+      await axios.put(`https://www.api.pnytrainings.com/api/faquestion/${id}`, {
         categoryName,
       });
       navigate("/faquestion"); // Redirect after update

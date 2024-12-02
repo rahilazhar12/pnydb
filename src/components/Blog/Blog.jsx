@@ -23,7 +23,7 @@ const Blog = () => {
     const fetchBlogs = async () => {
       try {
         const response = await axios.get(
-          "http://api.pnytrainings.com/api/blogpost"
+          "https://www.api.pnytrainings.com/api/blogpost"
         );
         setBlogs(response.data); // Assuming API returns an array of blog posts
         setFilteredBlogs(response.data);
@@ -49,7 +49,7 @@ const Blog = () => {
   // Handle Delete
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://api.pnytrainings.com/api/blogpost/${id}`);
+      await axios.delete(`https://www.api.pnytrainings.com/api/blogpost/${id}`);
       // After deleting, filter out the deleted blog from the local state
       setBlogs(blogs.filter((blog) => blog._id !== id));
       setFilteredBlogs(filteredBlogs.filter((blog) => blog._id !== id));

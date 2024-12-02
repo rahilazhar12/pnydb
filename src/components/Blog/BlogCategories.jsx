@@ -14,7 +14,7 @@ const BlogCategories = () => {
   const fetchCategories = async () => {
     try {
       const response = await axios.get(
-        "http://api.pnytrainings.com/api/blogcate"
+        "https://www.api.pnytrainings.com/api/blogcate"
       );
       setCategories(response.data);
       setFilteredCategories(response.data);
@@ -46,7 +46,9 @@ const BlogCategories = () => {
   const handleDelete = async (id) => {
     if (window.confirm("Are you sure you want to delete this category?")) {
       try {
-        await axios.delete(`http://api.pnytrainings.com/api/blogcate/${id}`);
+        await axios.delete(
+          `https://www.api.pnytrainings.com/api/blogcate/${id}`
+        );
         fetchCategories(); // Refresh categories after deletion
       } catch (error) {
         console.error("Error deleting category:", error);

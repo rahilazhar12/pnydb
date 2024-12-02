@@ -22,7 +22,7 @@ const AddBlogCate = () => {
 
     try {
       const res = await axios.post(
-        "http://api.pnytrainings.com/api/blogcate",
+        "https://www.api.pnytrainings.com/api/blogcate",
         categoryData
       );
       if (res.status === 201) {

@@ -23,7 +23,7 @@ const AddCategory = () => {
     };
 
     axios
-      .post("http://api.pnytrainings.com/api/categories", transformedData)
+      .post("https://www.api.pnytrainings.com/api/categories", transformedData)
       .then((response) => {
         console.log(response);
         alert("Category added successfully!");

@@ -13,7 +13,7 @@ const TableGallery = () => {
   useEffect(() => {
     // Fetch gallery items from the API
     axios
-      .get("http://api.pnytrainings.com/api/gallery")
+      .get("https://www.api.pnytrainings.com/api/gallery")
       .then((response) => setGalleryItems(response.data))
       .catch((error) => console.error("Error fetching gallery items:", error));
   }, []);
@@ -25,7 +25,9 @@ const TableGallery = () => {
 
   const handleDelete = async (itemId) => {
     try {
-      await axios.delete(`http://api.pnytrainings.com/api/gallery/${itemId}`);
+      await axios.delete(
+        `https://www.api.pnytrainings.com/api/gallery/${itemId}`
+      );
       setGalleryItems(galleryItems.filter((item) => item._id !== itemId));
     } catch (error) {
       console.error("Error deleting gallery item:", error);
@@ -35,7 +37,7 @@ const TableGallery = () => {
   const handleAddGalleryItem = async (newItem) => {
     try {
       const response = await axios.post(
-        "http://api.pnytrainings.com/api/gallery",
+        "https://www.api.pnytrainings.com/api/gallery",
         newItem
       );
       setGalleryItems([...galleryItems, response.data]);
@@ -131,7 +133,7 @@ const TableGallery = () => {
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
                         <img
-                          src={`http://api.pnytrainings.com/${item.coverImage.replace(
+                          src={`https://www.api.pnytrainings.com/${item.coverImage.replace(
                             /\\/g,
                             "/"
                           )}`}

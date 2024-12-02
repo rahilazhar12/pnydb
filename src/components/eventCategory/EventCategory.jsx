@@ -11,7 +11,7 @@ const EventCategory = () => {
 
   useEffect(() => {
     axios
-      .get("http://api.pnytrainings.com/api/event")
+      .get("https://www.api.pnytrainings.com/api/event")
       .then((response) => {
         setEvent(response.data);
         setFilteredEvents(response.data); // Initially show all events
@@ -34,7 +34,9 @@ const EventCategory = () => {
 
   const handleDelete = async (eventId) => {
     try {
-      await axios.delete(`http://api.pnytrainings.com/api/event/${eventId}`);
+      await axios.delete(
+        `https://www.api.pnytrainings.com/api/event/${eventId}`
+      );
       const updatedEvents = event.filter((item) => item._id !== eventId);
       setEvent(updatedEvents);
       setFilteredEvents(updatedEvents);

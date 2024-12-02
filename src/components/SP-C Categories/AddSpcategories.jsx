@@ -21,7 +21,7 @@ const AddSpcategories = () => {
       };
 
       let res = await axios.post(
-        "http://api.pnytrainings.com/api/citycategory",
+        "https://www.api.pnytrainings.com/api/citycategory",
         requestData
       );
       console.log("Special course category added:", res.data);

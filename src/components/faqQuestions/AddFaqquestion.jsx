@@ -15,7 +15,7 @@ const AddFaqquestion = () => {
   useEffect(() => {
     // Fetch FAQ categories from the API
     axios
-      .get("http://api.pnytrainings.com/api/faqcat")
+      .get("https://www.api.pnytrainings.com/api/faqcat")
       .then((response) => setCategories(response.data))
       .catch((error) => console.error("Error fetching FAQ categories:", error));
   }, []);
@@ -30,7 +30,10 @@ const AddFaqquestion = () => {
     };
 
     try {
-      await axios.post("http://api.pnytrainings.com/api/faquestion", formData);
+      await axios.post(
+        "https://www.api.pnytrainings.com/api/faquestion",
+        formData
+      );
       navigate("/faqs"); // Redirect after successful submission
     } catch (error) {
       console.error("Error adding FAQ question:", error);

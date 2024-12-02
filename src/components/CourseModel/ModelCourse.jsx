@@ -8,7 +8,7 @@ const ModelCourse = () => {
   const [modules, setModules] = useState([]);
   const [filteredModules, setFilteredModules] = useState([]);
 
-  const API_URL = "http://api.pnytrainings.com/api/coursemodel";
+  const API_URL = "https://www.api.pnytrainings.com/api/coursemodel";
 
   // Fetch Course Modules
   useEffect(() => {
