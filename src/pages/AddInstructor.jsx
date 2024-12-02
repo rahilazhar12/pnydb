@@ -20,11 +20,15 @@ const AddInstructor = () => {
     formData.append("in_View", viewOnWeb === "Yes"); // Convert to boolean
 
     try {
-      const response = await axios.post("http://localhost:8080/api/instructors", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
+      const response = await axios.post(
+        "http://api.pnytrainings.com/api/instructors",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
       console.log("Instructor Added:", response.data);
       navigate("/users");
     } catch (error) {
@@ -68,7 +72,10 @@ const AddInstructor = () => {
         </div>
 
         <div className="mb-4">
-          <label className="block text-gray-400 mb-2" htmlFor="profileDescription">
+          <label
+            className="block text-gray-400 mb-2"
+            htmlFor="profileDescription"
+          >
             Instructor Profile
           </label>
           <textarea

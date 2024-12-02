@@ -15,7 +15,9 @@ const UsersTable = () => {
   useEffect(() => {
     const fetchInstructors = async () => {
       try {
-        const response = await axios.get("http://localhost:8080/api/instructors");
+        const response = await axios.get(
+          "http://api.pnytrainings.com/api/instructors"
+        );
         console.log(response.data); // Log fetched users
         setUsers(response.data);
         setFilteredUsers(response.data);
@@ -42,7 +44,7 @@ const UsersTable = () => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:8080/api/instructors/${id}`);
+      await axios.delete(`http://api.pnytrainings.com/api/instructors/${id}`);
       setFilteredUsers(filteredUsers.filter((user) => user._id !== id));
     } catch (error) {
       console.error("Failed to delete user", error);
@@ -78,7 +80,10 @@ const UsersTable = () => {
                   value={searchTerm}
                   onChange={handleSearch}
                 />
-                <Search className="absolute left-3 top-2.5 text-gray-400" size={18} />
+                <Search
+                  className="absolute left-3 top-2.5 text-gray-400"
+                  size={18}
+                />
               </div>
               <Link to="adduser">
                 <button className="bg-blue-600 hover:bg-blue-500 hidden sm:block text-white font-semibold py-2 px-4 rounded-lg transition-all duration-300">
@@ -126,8 +131,11 @@ const UsersTable = () => {
                         <img
                           src={
                             user.photo
-                              ? `http://localhost:8080/${user.photo.replace(/\\/g, '/')}`
-                              : 'path/to/default-image.jpg' // Use a fallback image here
+                              ? `http://api.pnytrainings.com/${user.photo.replace(
+                                  /\\/g,
+                                  "/"
+                                )}`
+                              : "path/to/default-image.jpg" // Use a fallback image here
                           }
                           alt="User profile"
                           className="h-full w-full object-cover rounded-full"

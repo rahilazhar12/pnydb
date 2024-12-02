@@ -17,7 +17,10 @@ const CourseCategories = () => {
     const fetchCategories = async () => {
       try {
         setLoading(true);
-        const response = await axios.get("http://localhost:8080/api/categories", { withCredentials: true });
+        const response = await axios.get(
+          "http://api.pnytrainings.com/api/categories",
+          { withCredentials: true }
+        );
         setCategories(response.data);
         setFilteredCategories(response.data);
         setLoading(false);
@@ -27,10 +30,9 @@ const CourseCategories = () => {
         setLoading(false);
       }
     };
-  
+
     fetchCategories();
   }, [location.pathname]); // Refetch when the route changes
-  
 
   const handleSearch = (e) => {
     const term = e.target.value.toLowerCase();
@@ -44,16 +46,24 @@ const CourseCategories = () => {
   };
 
   const handleDelete = (id) => {
-    if (!window.confirm("Are you sure you want to delete this category?")) return;
+    if (!window.confirm("Are you sure you want to delete this category?"))
+      return;
     axios
-      .delete(`http://localhost:8080/api/categories/${id}`, { withCredentials: true })
+      .delete(`http://api.pnytrainings.com/api/categories/${id}`, {
+        withCredentials: true,
+      })
       .then(() => {
-        const updatedCategories = categories.filter((category) => category._id !== id);
+        const updatedCategories = categories.filter(
+          (category) => category._id !== id
+        );
         setCategories(updatedCategories);
         setFilteredCategories(updatedCategories);
       })
       .catch((error) => {
-        console.error("Error deleting category:", error.response?.data || error.message);
+        console.error(
+          "Error deleting category:",
+          error.response?.data || error.message
+        );
         setError("Failed to delete category");
       });
   };
@@ -64,7 +74,7 @@ const CourseCategories = () => {
 
     axios
       .put(
-        `http://localhost:8080/api/categories/${id}`,
+        `http://api.pnytrainings.com/api/categories/${id}`,
         { status: updatedStatus },
         { withCredentials: true }
       )
@@ -76,7 +86,10 @@ const CourseCategories = () => {
         setFilteredCategories(updatedCategories);
       })
       .catch((error) => {
-        console.error("Error updating category status:", error.response?.data || error.message);
+        console.error(
+          "Error updating category status:",
+          error.response?.data || error.message
+        );
         setError("Failed to update category status");
       });
   };
@@ -97,7 +110,9 @@ const CourseCategories = () => {
       {!isAddCategoryPage && (
         <>
           <div className="flex justify-between items-center mb-6">
-            <h2 className="text-2xl font-semibold text-gray-100 cursor-pointer">Course Categories</h2>
+            <h2 className="text-2xl font-semibold text-gray-100 cursor-pointer">
+              Course Categories
+            </h2>
             <div className="flex items-center space-x-4">
               <div className="relative hidden md:block">
                 <input
@@ -107,7 +122,10 @@ const CourseCategories = () => {
                   value={searchTerm}
                   onChange={handleSearch}
                 />
-                <Search className="absolute left-3 top-2.5 text-gray-400" size={18} />
+                <Search
+                  className="absolute left-3 top-2.5 text-gray-400"
+                  size={18}
+                />
               </div>
               <Link to="addcategory">
                 <button className="bg-blue-600 hover:bg-blue-500 hidden md:block text-white font-semibold py-2 px-4 rounded-lg transition-all duration-300">
@@ -149,16 +167,22 @@ const CourseCategories = () => {
                       transition={{ duration: 0.3 }}
                     >
                       <td className="px-6 py-4 whitespace-nowrap">
-                        <div className="text-sm font-medium text-gray-100">{category.Category_Name}</div>
+                        <div className="text-sm font-medium text-gray-100">
+                          {category.Category_Name}
+                        </div>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
-                        <div className="text-sm text-gray-300">{category.short_Description.slice(0, 50)}...</div>
+                        <div className="text-sm text-gray-300">
+                          {category.short_Description.slice(0, 50)}...
+                        </div>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
                         <span
                           onClick={() => handleToggleStatus(category._id)}
                           className={`cursor-pointer px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${
-                            category.status ? "bg-green-800 text-green-100" : "bg-red-800 text-red-100"
+                            category.status
+                              ? "bg-green-800 text-green-100"
+                              : "bg-red-800 text-red-100"
                           }`}
                         >
                           {category.status ? "Active" : "Inactive"}

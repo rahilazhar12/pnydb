@@ -8,7 +8,7 @@ const EventDetail = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:8080/api/events/${id}`)
+      .get(`http://api.pnytrainings.com/api/events/${id}`)
       .then((response) => setEvent(response.data))
       .catch((error) => console.error("Error fetching event:", error));
   }, [id]);
@@ -20,7 +20,7 @@ const EventDetail = () => {
   return (
     <div className="container mx-auto p-6 bg-gray-800 rounded-xl shadow-md">
       <h2 className="text-2xl font-semibold text-white mb-4">Event Details</h2>
-      
+
       <table className="min-w-full table-auto text-left text-gray-300">
         <thead>
           <tr className="bg-gray-700">
@@ -45,7 +45,10 @@ const EventDetail = () => {
             <td className="px-4 py-2 font-semibold">Image</td>
             <td className="px-4 py-2">
               <img
-                src={`http://localhost:8080/${event.image.replace(/\\/g, '/')}`}
+                src={`http://api.pnytrainings.com/${event.image.replace(
+                  /\\/g,
+                  "/"
+                )}`}
                 alt={event.title}
                 className="w-32 h-32 object-cover mt-2"
               />

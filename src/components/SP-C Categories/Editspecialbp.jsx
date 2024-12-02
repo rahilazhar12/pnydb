@@ -1,35 +1,37 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import { useParams, useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { useParams, useNavigate } from "react-router-dom";
 
 const Editspecialbp = () => {
   const { id } = useParams(); // Get post ID from route params
   const navigate = useNavigate();
-  
+
   const [postData, setPostData] = useState({
-    postTitle: '',
-    postCategory: '',
-    postThumbnailImage: '',
-    shortDescription: '',
-    postDescription: '',
-    metaTitle: '',
-    metaDescription: '',
+    postTitle: "",
+    postCategory: "",
+    postThumbnailImage: "",
+    shortDescription: "",
+    postDescription: "",
+    metaTitle: "",
+    metaDescription: "",
     isPublish: false,
     featured: false,
-    customCanonicalUrl: ''
+    customCanonicalUrl: "",
   });
 
   // Fetch blog post data for editing
   useEffect(() => {
     const fetchPostData = async () => {
       try {
-        const response = await axios.get(`http://localhost:8080/api/specialcatblog/${id}`);
+        const response = await axios.get(
+          `http://api.pnytrainings.com/api/specialcatblog/${id}`
+        );
         setPostData(response.data); // Populate form with existing post data
       } catch (error) {
         console.error("Error fetching post data:", error);
       }
     };
-    
+
     fetchPostData();
   }, [id]);
 
@@ -37,7 +39,7 @@ const Editspecialbp = () => {
     const { name, value } = e.target;
     setPostData({
       ...postData,
-      [name]: value
+      [name]: value,
     });
   };
 
@@ -45,15 +47,18 @@ const Editspecialbp = () => {
     const { name, checked } = e.target;
     setPostData({
       ...postData,
-      [name]: checked
+      [name]: checked,
     });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.put(`http://localhost:8080/api/specialcatblog/${id}`, postData);
-      navigate('/sp-c-blog-post'); // Redirect back to the list after successful edit
+      await axios.put(
+        `http://api.pnytrainings.com/api/specialcatblog/${id}`,
+        postData
+      );
+      navigate("/sp-c-blog-post"); // Redirect back to the list after successful edit
     } catch (error) {
       console.error("Error updating post:", error);
     }
@@ -61,7 +66,9 @@ const Editspecialbp = () => {
 
   return (
     <div className="bg-gray-800 p-6 rounded-lg shadow-md w-full overflow-auto">
-      <h2 className="text-2xl font-semibold text-gray-100 mb-4">Edit Special Blog Post</h2>
+      <h2 className="text-2xl font-semibold text-gray-100 mb-4">
+        Edit Special Blog Post
+      </h2>
       <form onSubmit={handleSubmit}>
         <div className="mb-4">
           <label className="block text-gray-100">Post Title</label>
@@ -161,7 +168,7 @@ const Editspecialbp = () => {
             checked={postData.isPublish}
             onChange={handleCheckboxChange}
             className="text-gray-700"
-          />{' '}
+          />{" "}
           <span className="text-gray-300">Yes</span>
         </div>
 
@@ -173,11 +180,14 @@ const Editspecialbp = () => {
             checked={postData.featured}
             onChange={handleCheckboxChange}
             className="text-gray-700"
-          />{' '}
+          />{" "}
           <span className="text-gray-300">Yes</span>
         </div>
 
-        <button type="submit" className="bg-blue-600 hover:bg-blue-500 text-white py-2 px-4 rounded-lg">
+        <button
+          type="submit"
+          className="bg-blue-600 hover:bg-blue-500 text-white py-2 px-4 rounded-lg"
+        >
           Update Post
         </button>
       </form>

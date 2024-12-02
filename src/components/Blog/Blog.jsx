@@ -1,7 +1,13 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Search } from "lucide-react";
-import { Link, Outlet, useLocation, useNavigate, useParams } from "react-router-dom";
+import {
+  Link,
+  Outlet,
+  useLocation,
+  useNavigate,
+  useParams,
+} from "react-router-dom";
 import axios from "axios";
 
 const Blog = () => {
@@ -10,13 +16,15 @@ const Blog = () => {
   const [blogs, setBlogs] = useState([]);
   const location = useLocation();
   const navigate = useNavigate();
-const {id}= useParams();
-console.log(filteredBlogs)
+  const { id } = useParams();
+  console.log(filteredBlogs);
   // Fetch blog posts from the API
   useEffect(() => {
     const fetchBlogs = async () => {
       try {
-        const response = await axios.get("http://localhost:8080/api/blogpost");
+        const response = await axios.get(
+          "http://api.pnytrainings.com/api/blogpost"
+        );
         setBlogs(response.data); // Assuming API returns an array of blog posts
         setFilteredBlogs(response.data);
       } catch (error) {
@@ -32,24 +40,23 @@ console.log(filteredBlogs)
     const term = e.target.value.toLowerCase();
     setSearchTerm(term);
     const filtered = blogs.filter(
-      (blog) =>
-        blog.postTitle && blog.postTitle.toLowerCase().includes(term)
+      (blog) => blog.postTitle && blog.postTitle.toLowerCase().includes(term)
     );
     setFilteredBlogs(filtered);
   };
 
   // Handle Delete
-// Handle Delete
-const handleDelete = async (id) => {
-  try {
-    await axios.delete(`http://localhost:8080/api/blogpost/${id}`);
-    // After deleting, filter out the deleted blog from the local state
-    setBlogs(blogs.filter(blog => blog._id !== id));
-    setFilteredBlogs(filteredBlogs.filter(blog => blog._id !== id));
-  } catch (error) {
-    console.error("Error deleting blog post:", error);
-  }
-};
+  // Handle Delete
+  const handleDelete = async (id) => {
+    try {
+      await axios.delete(`http://api.pnytrainings.com/api/blogpost/${id}`);
+      // After deleting, filter out the deleted blog from the local state
+      setBlogs(blogs.filter((blog) => blog._id !== id));
+      setFilteredBlogs(filteredBlogs.filter((blog) => blog._id !== id));
+    } catch (error) {
+      console.error("Error deleting blog post:", error);
+    }
+  };
 
   // Handle Edit
   const handleEdit = (id) => {
@@ -83,7 +90,10 @@ const handleDelete = async (id) => {
                     value={searchTerm}
                     onChange={handleSearch}
                   />
-                  <Search className="absolute left-3 top-2.5 text-gray-400" size={18} />
+                  <Search
+                    className="absolute left-3 top-2.5 text-gray-400"
+                    size={18}
+                  />
                 </div>
 
                 <Link to="/addblog">
@@ -100,7 +110,10 @@ const handleDelete = async (id) => {
                     value={searchTerm}
                     onChange={handleSearch}
                   />
-                  <Search className="absolute left-3 top-2.5 text-gray-400" size={18} />
+                  <Search
+                    className="absolute left-3 top-2.5 text-gray-400"
+                    size={18}
+                  />
                 </div>
               </div>
             </div>
@@ -135,16 +148,24 @@ const handleDelete = async (id) => {
                       transition={{ duration: 0.3 }}
                     >
                       <td className="px-6 py-4 whitespace-nowrap">
-                        <div className="text-sm font-medium text-gray-100">{blog.postTitle}</div>
+                        <div className="text-sm font-medium text-gray-100">
+                          {blog.postTitle}
+                        </div>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
-                        <div className="text-sm text-gray-300">{blog.shortDescription.slice(0,30)}...</div>
+                        <div className="text-sm text-gray-300">
+                          {blog.shortDescription.slice(0, 30)}...
+                        </div>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
-                        <div className="text-sm text-gray-300">{blog.status}</div>
+                        <div className="text-sm text-gray-300">
+                          {blog.status}
+                        </div>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
-                        <div className="text-sm text-gray-300">{new Date(blog.updatedAt).toLocaleDateString()}</div>
+                        <div className="text-sm text-gray-300">
+                          {new Date(blog.updatedAt).toLocaleDateString()}
+                        </div>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-300">
                         <button
@@ -167,7 +188,6 @@ const handleDelete = async (id) => {
             </div>
           </>
         )}
-
         <Outlet /> {/* Nested routes will render here */}
       </motion.div>
     </div>

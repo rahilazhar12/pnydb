@@ -15,7 +15,7 @@ const AddFaqquestion = () => {
   useEffect(() => {
     // Fetch FAQ categories from the API
     axios
-      .get("http://localhost:8080/api/faqcat")
+      .get("http://api.pnytrainings.com/api/faqcat")
       .then((response) => setCategories(response.data))
       .catch((error) => console.error("Error fetching FAQ categories:", error));
   }, []);
@@ -30,7 +30,7 @@ const AddFaqquestion = () => {
     };
 
     try {
-      await axios.post("http://localhost:8080/api/faquestion", formData);
+      await axios.post("http://api.pnytrainings.com/api/faquestion", formData);
       navigate("/faqs"); // Redirect after successful submission
     } catch (error) {
       console.error("Error adding FAQ question:", error);
@@ -39,7 +39,9 @@ const AddFaqquestion = () => {
 
   return (
     <div className="bg-gray-800 bg-opacity-50 backdrop-blur-md shadow-lg rounded-xl p-6 border border-gray-700 overflow-auto w-full">
-      <h2 className="text-2xl font-semibold text-gray-100 mb-5">Add FAQ Question</h2>
+      <h2 className="text-2xl font-semibold text-gray-100 mb-5">
+        Add FAQ Question
+      </h2>
       <form onSubmit={handleSubmit}>
         <div className="space-y-4">
           <input
@@ -57,7 +59,9 @@ const AddFaqquestion = () => {
             onChange={(e) => setFaqCategory(e.target.value)}
             required
           >
-            <option value="" disabled>Select FAQ's Category</option>
+            <option value="" disabled>
+              Select FAQ's Category
+            </option>
             {categories.map((category) => (
               <option key={category._id} value={category._id}>
                 {category.categoryName}

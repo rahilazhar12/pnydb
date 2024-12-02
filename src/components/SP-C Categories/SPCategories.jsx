@@ -1,7 +1,13 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Search } from "lucide-react";
-import { Link, Outlet, useLocation, useNavigate, useParams } from "react-router-dom";
+import {
+  Link,
+  Outlet,
+  useLocation,
+  useNavigate,
+  useParams,
+} from "react-router-dom";
 import axios from "axios";
 
 const SPCategories = () => {
@@ -16,7 +22,9 @@ const SPCategories = () => {
   useEffect(() => {
     const fetchCityCategories = async () => {
       try {
-        const response = await axios.get("http://localhost:8080/api/citycategory");
+        const response = await axios.get(
+          "http://api.pnytrainings.com/api/citycategory"
+        );
         setCityCategories(response.data);
         setFilteredCategories(response.data); // Set both states initially
       } catch (error) {
@@ -28,8 +36,12 @@ const SPCategories = () => {
 
   const handleDelete = async (id) => {
     try {
-      const response = await axios.delete(`http://localhost:8080/api/citycategory/${id}`);
-      const updatedCategories = cityCategories.filter((category) => category._id !== id);
+      const response = await axios.delete(
+        `http://api.pnytrainings.com/api/citycategory/${id}`
+      );
+      const updatedCategories = cityCategories.filter(
+        (category) => category._id !== id
+      );
       setCityCategories(updatedCategories);
       setFilteredCategories(updatedCategories);
       console.log(response);
@@ -79,7 +91,10 @@ const SPCategories = () => {
                   value={searchTerm}
                   onChange={handleSearch}
                 />
-                <Search className="absolute left-3 top-2.5 text-gray-400" size={18} />
+                <Search
+                  className="absolute left-3 top-2.5 text-gray-400"
+                  size={18}
+                />
               </div>
 
               <Link to="/addspc">
@@ -118,13 +133,19 @@ const SPCategories = () => {
                     transition={{ duration: 0.3 }}
                   >
                     <td className="px-6 py-4 whitespace-nowrap">
-                      <div className="text-sm font-medium text-gray-100">{index + 1}</div>
+                      <div className="text-sm font-medium text-gray-100">
+                        {index + 1}
+                      </div>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
-                      <div className="text-sm text-gray-100">{category.cityCategoryName}</div>
+                      <div className="text-sm text-gray-100">
+                        {category.cityCategoryName}
+                      </div>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
-                      <div className="text-sm text-gray-300">{category.shortDescription}</div>
+                      <div className="text-sm text-gray-300">
+                        {category.shortDescription}
+                      </div>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-300">
                       <button

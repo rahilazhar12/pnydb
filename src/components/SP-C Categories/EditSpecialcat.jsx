@@ -14,7 +14,9 @@ const EditSpecialcat = () => {
   useEffect(() => {
     const fetchCategoryDetails = async () => {
       try {
-        const response = await axios.get(`http://localhost:8080/api/citycategory/${id}`);
+        const response = await axios.get(
+          `http://api.pnytrainings.com/api/citycategory/${id}`
+        );
         console.log("API Response:", response.data); // Debugging: check the response
         setCategoryData({
           cityCategoryName: response.data.cityCategoryName, // Update these fields based on your API response
@@ -38,7 +40,10 @@ const EditSpecialcat = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.put(`http://localhost:8080/api/citycategory/${id}`, categoryData);
+      await axios.put(
+        `http://api.pnytrainings.com/api/citycategory/${id}`,
+        categoryData
+      );
       navigate("/sp-c-categories"); // Redirect to categories page after successful edit
     } catch (error) {
       console.error("Error updating category:", error);

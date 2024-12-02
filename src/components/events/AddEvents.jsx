@@ -33,7 +33,7 @@ const AddEvents = () => {
     formData.append("customCanonicalUrl", customCanonicalUrl);
 
     try {
-      await axios.post("http://localhost:8080/api/faqcat", formData, {
+      await axios.post("http://api.pnytrainings.com/api/faqcat", formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
       navigate("/faqs"); // Redirect after successful submission
@@ -44,7 +44,9 @@ const AddEvents = () => {
 
   return (
     <div className="bg-gray-800 bg-opacity-50 backdrop-blur-md shadow-lg rounded-xl p-6 border border-gray-700 overflow-auto">
-      <h2 className="text-2xl font-semibold text-gray-100 mb-5">Add FAQ Category</h2>
+      <h2 className="text-2xl font-semibold text-gray-100 mb-5">
+        Add FAQ Category
+      </h2>
       <form onSubmit={handleSubmit}>
         <div className="space-y-4">
           <input

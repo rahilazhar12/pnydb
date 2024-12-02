@@ -13,7 +13,9 @@ const BlogCategories = () => {
   // Fetch categories from API
   const fetchCategories = async () => {
     try {
-      const response = await axios.get("http://localhost:8080/api/blogcate");
+      const response = await axios.get(
+        "http://api.pnytrainings.com/api/blogcate"
+      );
       setCategories(response.data);
       setFilteredCategories(response.data);
     } catch (error) {
@@ -44,7 +46,7 @@ const BlogCategories = () => {
   const handleDelete = async (id) => {
     if (window.confirm("Are you sure you want to delete this category?")) {
       try {
-        await axios.delete(`http://localhost:8080/api/blogcate/${id}`);
+        await axios.delete(`http://api.pnytrainings.com/api/blogcate/${id}`);
         fetchCategories(); // Refresh categories after deletion
       } catch (error) {
         console.error("Error deleting category:", error);
@@ -60,7 +62,9 @@ const BlogCategories = () => {
       transition={{ delay: 0.2 }}
     >
       <div className="text-center items-center mb-6 w-full">
-        <h2 className="text-2xl font-semibold text-gray-100 cursor-pointer mb-5">Blog Categories</h2>
+        <h2 className="text-2xl font-semibold text-gray-100 cursor-pointer mb-5">
+          Blog Categories
+        </h2>
         <hr className="w-full h-1 bg-slate-500 rounded-sm" />
         <div className="flex justify-center lg:justify-between items-center space-x-4 my-5">
           <div className="relative">
@@ -71,7 +75,10 @@ const BlogCategories = () => {
               value={searchTerm}
               onChange={handleSearch}
             />
-            <Search className="absolute left-3 top-2.5 text-gray-400" size={18} />
+            <Search
+              className="absolute left-3 top-2.5 text-gray-400"
+              size={18}
+            />
           </div>
 
           <Link to="/addblogcate">
@@ -109,10 +116,14 @@ const BlogCategories = () => {
                 transition={{ duration: 0.3 }}
               >
                 <td className="px-6 py-4 whitespace-nowrap">
-                  <div className="text-sm font-medium text-gray-100">{index + 1}</div>
+                  <div className="text-sm font-medium text-gray-100">
+                    {index + 1}
+                  </div>
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap">
-                  <div className="text-sm font-medium text-gray-100">{category.categoryName}</div>
+                  <div className="text-sm font-medium text-gray-100">
+                    {category.categoryName}
+                  </div>
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap">
                   <span

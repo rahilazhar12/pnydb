@@ -19,9 +19,11 @@ const AddFlyers = () => {
         selectedCategory,
         selectedCourse,
         status
-      )
+      );
       try {
-        const response = await fetch("http://localhost:8080/api/categories");
+        const response = await fetch(
+          "http://api.pnytrainings.com/api/categories"
+        );
         if (!response.ok) {
           throw new Error("Failed to fetch categories");
         }
@@ -34,7 +36,7 @@ const AddFlyers = () => {
 
     const fetchCourses = async () => {
       try {
-        const response = await fetch("http://localhost:8080/api/courses");
+        const response = await fetch("http://api.pnytrainings.com/api/courses");
         if (!response.ok) {
           throw new Error("Failed to fetch courses");
         }
@@ -49,40 +51,37 @@ const AddFlyers = () => {
     fetchCourses();
   }, []);
 
-
-
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     const formData = new FormData();
     formData.append("flyerFile", flyerFile);
     formData.append("category", selectedCategory);
     formData.append("course", selectedCourse);
     formData.append("status", status);
-  
+
     // Log form data to check its contents
     for (let pair of formData.entries()) {
       console.log(`${pair[0]}: ${pair[1]}`);
     }
-  
+
     try {
-      console.log(formData)
-      const response = await fetch("http://localhost:8080/api/eflyer", {
+      console.log(formData);
+      const response = await fetch("http://api.pnytrainings.com/api/eflyer", {
         method: "POST",
         body: formData,
       });
-       console.log(response)
+      console.log(response);
       if (!response.ok) {
         const errorText = await response.text(); // Get the error response body
-        console.log('Error: ' + errorText)
+        console.log("Error: " + errorText);
       }
-  
+
       navigate("/eflayer");
     } catch (error) {
       console.error("Error adding Eflyer:", error);
     }
   };
-  
 
   const handleCancel = () => {
     navigate("/eflayer");
@@ -145,12 +144,12 @@ const AddFlyers = () => {
               Profile Picture
             </label>
             <input
-    type="file"
-    onChange={(e) => setProfilePic(e.target.files[0])} // Set the first selected file
-    className="w-full px-4 py-2 bg-gray-700 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-    accept="image/*"
-    required // Optional, make it required if necessary
-/>
+              type="file"
+              onChange={(e) => setProfilePic(e.target.files[0])} // Set the first selected file
+              className="w-full px-4 py-2 bg-gray-700 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              accept="image/*"
+              required // Optional, make it required if necessary
+            />
           </div>
           <div className="mb-4">
             <label className="block text-gray-400 mb-2" htmlFor="status">

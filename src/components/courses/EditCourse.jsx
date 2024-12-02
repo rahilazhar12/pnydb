@@ -41,8 +41,8 @@ const EditCourse = () => {
     const fetchData = async () => {
       try {
         const [courseResponse, categoriesResponse] = await Promise.all([
-          axios.get(`http://localhost:8080/api/courses/${courseId}`),
-          axios.get(`http://localhost:8080/api/categories`),
+          axios.get(`http://api.pnytrainings.com/api/courses/${courseId}`),
+          axios.get(`http://api.pnytrainings.com/api/categories`),
         ]);
         setCourse(courseResponse.data);
         setCategories(categoriesResponse.data);
@@ -63,16 +63,23 @@ const EditCourse = () => {
 
     for (const key in course) {
       if (key === "course_Category") {
-        formData.append(key, course.course_Category._id || course.course_Category);
+        formData.append(
+          key,
+          course.course_Category._id || course.course_Category
+        );
       } else {
         formData.append(key, course[key]);
       }
     }
     if (brochureFile) formData.append("Brochure", brochureFile);
     try {
-      await axios.put(`http://localhost:8080/api/courses/${courseId}`, formData, {
-        headers: { "Content-Type": "multipart/form-data" },
-      });
+      await axios.put(
+        `http://api.pnytrainings.com/api/courses/${courseId}`,
+        formData,
+        {
+          headers: { "Content-Type": "multipart/form-data" },
+        }
+      );
       alert("Course updated successfully!");
       navigate("/courses");
     } catch (error) {
@@ -88,7 +95,9 @@ const EditCourse = () => {
     }));
   };
   const handleCategoryChange = (e) => {
-    const selectedCategory = categories.find((cat) => cat._id === e.target.value);
+    const selectedCategory = categories.find(
+      (cat) => cat._id === e.target.value
+    );
     setCourse((prevCourse) => ({
       ...prevCourse,
       course_Category: selectedCategory || e.target.value,
@@ -101,7 +110,9 @@ const EditCourse = () => {
     <div className="w-full overflow-y-auto">
       <Header />
       <div className="bg-gray-800 bg-opacity-50 backdrop-blur-md shadow-lg rounded-xl p-6 border my-10 border-gray-700 max-w-lg mx-auto">
-        <h2 className="text-2xl font-semibold text-gray-100 mb-5">Edit Course</h2>
+        <h2 className="text-2xl font-semibold text-gray-100 mb-5">
+          Edit Course
+        </h2>
         <form onSubmit={handleSubmit} encType="multipart/form-data">
           {/** Render All Fields **/}
           <div className="mb-4">

@@ -13,10 +13,10 @@ const Freetrail = () => {
   const [endDate, setEndDate] = useState("2024-10-07");
   const location = useLocation();
   const navigate = useNavigate();
-   console.log(freeTrials)
+  console.log(freeTrials);
   useEffect(() => {
     axios
-      .get("http://localhost:8080/api/freetrial")
+      .get("http://api.pnytrainings.com/api/freetrial")
       .then((response) => {
         setFreeTrials(response.data);
         setFilteredTrials(response.data); // Initially show all data
@@ -45,7 +45,9 @@ const Freetrail = () => {
 
   const handleDelete = async (trialId) => {
     try {
-      await axios.delete(`http://localhost:8080/api/freetrial/${trialId}`);
+      await axios.delete(
+        `http://api.pnytrainings.com/api/freetrial/${trialId}`
+      );
       const updatedTrials = freeTrials.filter((item) => item._id !== trialId);
       setFreeTrials(updatedTrials);
       setFilteredTrials(updatedTrials);

@@ -23,7 +23,7 @@ const AddGallery = () => {
     formData.append("note", note);
 
     try {
-      await axios.post("http://localhost:8080/api/gallery", formData, {
+      await axios.post("http://api.pnytrainings.com/api/gallery", formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
       navigate("/gallery"); // Redirect to Gallery Table after adding a gallery item

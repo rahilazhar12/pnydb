@@ -9,10 +9,10 @@ const Events = () => {
   const [filteredEvents, setFilteredEvents] = useState([]);
   const location = useLocation();
   const navigate = useNavigate();
-console.log(events)
+  console.log(events);
   useEffect(() => {
     axios
-      .get("http://localhost:8080/api/events")
+      .get("http://api.pnytrainings.com/api/events")
       .then((response) => {
         setEvents(response.data);
         setFilteredEvents(response.data);
@@ -35,7 +35,7 @@ console.log(events)
 
   const handleDelete = async (eventId) => {
     try {
-      await axios.delete(`http://localhost:8080/api/events/${eventId}`);
+      await axios.delete(`http://api.pnytrainings.com/api/events/${eventId}`);
       const updatedEvents = events.filter((item) => item._id !== eventId);
       setEvents(updatedEvents);
       setFilteredEvents(updatedEvents);
@@ -55,22 +55,22 @@ console.log(events)
         <h2 className="text-2xl font-semibold text-gray-100 mb-5">
           Manage Events
         </h2>
-<div className="flex justify-between">
-<div className="relative">
-  <input
-          type="text"
-          placeholder="Search by title"
-          className="bg-gray-700 text-white rounded-lg py-2 px-4 mb-4"
-          value={searchTerm}
-          onChange={handleSearch}
-        />
-  </div>
-             <Link to="/addevents">
-                <button className="bg-blue-600 hover:bg-blue-500 text-white hidden sm:block font-semibold py-2 px-4 rounded-lg transition-all duration-300">
-                  Add Event
-                </button>
-              </Link>
-</div>
+        <div className="flex justify-between">
+          <div className="relative">
+            <input
+              type="text"
+              placeholder="Search by title"
+              className="bg-gray-700 text-white rounded-lg py-2 px-4 mb-4"
+              value={searchTerm}
+              onChange={handleSearch}
+            />
+          </div>
+          <Link to="/addevents">
+            <button className="bg-blue-600 hover:bg-blue-500 text-white hidden sm:block font-semibold py-2 px-4 rounded-lg transition-all duration-300">
+              Add Event
+            </button>
+          </Link>
+        </div>
       </div>
 
       <div className="overflow-x-auto">
@@ -100,12 +100,21 @@ console.log(events)
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.3 }}
               >
-                <td className="px-6 py-4 whitespace-nowrap">{event.
-                  metaTitle}</td>
-                <td className="px-6 py-4 whitespace-nowrap">{event.category.
-                  name}</td>
                 <td className="px-6 py-4 whitespace-nowrap">
-                  <img src={`http://localhost:8080/${event.image.replace(/\\/g, '/')}`} alt={event.title} className="w-16 h-16 object-cover" />
+                  {event.metaTitle}
+                </td>
+                <td className="px-6 py-4 whitespace-nowrap">
+                  {event.category.name}
+                </td>
+                <td className="px-6 py-4 whitespace-nowrap">
+                  <img
+                    src={`http://api.pnytrainings.com/${event.image.replace(
+                      /\\/g,
+                      "/"
+                    )}`}
+                    alt={event.title}
+                    className="w-16 h-16 object-cover"
+                  />
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-300">
                   <Link to={`/eventdetail/${event._id}`}>

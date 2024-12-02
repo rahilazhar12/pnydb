@@ -1,27 +1,29 @@
-import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import React, { useState, useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const EditBlog = () => {
   const { id } = useParams(); // Get the blog ID from URL parameters
   const navigate = useNavigate(); // Use to navigate back after editing
   const [formData, setFormData] = useState({
-    postTitle: '',
-    shortDescription: '',
-    status: '',
+    postTitle: "",
+    shortDescription: "",
+    status: "",
   });
 
   useEffect(() => {
     const fetchBlog = async () => {
       try {
-        const response = await axios.get(`http://localhost:8080/api/blogpost/${id}`);
+        const response = await axios.get(
+          `http://api.pnytrainings.com/api/blogpost/${id}`
+        );
         setFormData({
           postTitle: response.data.postTitle,
           shortDescription: response.data.shortDescription,
           status: response.data.status,
         });
       } catch (error) {
-        console.error('Error fetching blog:', error);
+        console.error("Error fetching blog:", error);
       }
     };
 
@@ -39,11 +41,14 @@ const EditBlog = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.put(`http://localhost:8080/api/blogpost/${id}`, formData);
+      await axios.put(
+        `http://api.pnytrainings.com/api/blogpost/${id}`,
+        formData
+      );
       // Redirect after successful edit
-      navigate('/blog-post'); // Change this to your desired route
+      navigate("/blog-post"); // Change this to your desired route
     } catch (error) {
-      console.error('Error updating blog:', error);
+      console.error("Error updating blog:", error);
     }
   };
 
@@ -63,7 +68,9 @@ const EditBlog = () => {
           />
         </div>
         <div className="mb-4">
-          <label className="block text-sm font-medium ">Short Description</label>
+          <label className="block text-sm font-medium ">
+            Short Description
+          </label>
           <textarea
             name="shortDescription"
             className="w-full px-3 py-2 border rounded-md text-black"
@@ -94,4 +101,3 @@ const EditBlog = () => {
 };
 
 export default EditBlog;
-

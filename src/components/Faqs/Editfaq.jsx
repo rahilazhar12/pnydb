@@ -6,10 +6,10 @@ const EditFaq = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const [categoryName, setCategoryName] = useState("");
-  
+
   useEffect(() => {
     axios
-      .get(`http://localhost:8080/api/faqcat/${id}`)
+      .get(`http://api.pnytrainings.com/api/faqcat/${id}`)
       .then((response) => {
         setCategoryName(response.data.categoryName);
       })
@@ -18,7 +18,7 @@ const EditFaq = () => {
 
   const handleUpdate = async () => {
     try {
-      await axios.put(`http://localhost:8080/api/faqcat/${id}`, {
+      await axios.put(`http://api.pnytrainings.com/api/faqcat/${id}`, {
         categoryName,
       });
       navigate("/faqs"); // Redirect after update
@@ -29,7 +29,9 @@ const EditFaq = () => {
 
   return (
     <div className="p-6 bg-gray-800 bg-opacity-50 backdrop-blur-md shadow-lg rounded-xl w-full">
-      <h2 className="text-2xl font-semibold text-gray-100 mb-5">Edit FAQ Category</h2>
+      <h2 className="text-2xl font-semibold text-gray-100 mb-5">
+        Edit FAQ Category
+      </h2>
       <div className="mb-4">
         <label className="block text-gray-300 mb-2">Category Name</label>
         <input

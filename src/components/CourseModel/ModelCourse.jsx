@@ -8,7 +8,7 @@ const ModelCourse = () => {
   const [modules, setModules] = useState([]);
   const [filteredModules, setFilteredModules] = useState([]);
 
-  const API_URL = "http://localhost:8080/api/coursemodel";
+  const API_URL = "http://api.pnytrainings.com/api/coursemodel";
 
   // Fetch Course Modules
   useEffect(() => {
@@ -64,7 +64,7 @@ const ModelCourse = () => {
           </button>
         </Link>
       </div>
-      
+
       <div className="text-center mb-6">
         <input
           type="text"
@@ -103,7 +103,9 @@ const ModelCourse = () => {
                 transition={{ duration: 0.3 }}
               >
                 <td className="px-6 py-4 whitespace-nowrap">{index + 1}</td>
-                <td className="px-6 py-4 whitespace-nowrap">{module.textEditor}</td>
+                <td className="px-6 py-4 whitespace-nowrap">
+                  {module.textEditor}
+                </td>
                 <td className="px-6 py-4 whitespace-nowrap">
                   {module.courseModulePosition}
                 </td>

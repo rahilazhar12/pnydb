@@ -14,7 +14,9 @@ const Eflayer = () => {
     // Fetch data from the API when the component mounts
     const fetchEflyers = async () => {
       try {
-        const response = await axios.get("http://localhost:8080/api/eflyer");
+        const response = await axios.get(
+          "http://api.pnytrainings.com/api/eflyer"
+        );
         setEflyers(response.data); // Set fetched data
         setFilteredEflyers(response.data); // Initialize filtered data
       } catch (error) {
@@ -41,9 +43,10 @@ const Eflayer = () => {
   };
 
   // Delete the selected eflyer
-  const handleDelete = async (id) => { // Track the ID being deleted
+  const handleDelete = async (id) => {
+    // Track the ID being deleted
     try {
-      await axios.delete(`http://localhost:8080/api/eflyer/${id}`);
+      await axios.delete(`http://api.pnytrainings.com/api/eflyer/${id}`);
       // Remove the deleted eFlyer from both states
       const updatedEflyers = eflyers.filter((eflyer) => eflyer._id !== id);
       setEflyers(updatedEflyers);
@@ -52,7 +55,7 @@ const Eflayer = () => {
     } catch (error) {
       console.error("Error deleting eFlyer:", error);
       alert("Failed to delete eFlyer. Please try again.");
-    } 
+    }
   };
 
   const isAddInstructorPage = location.pathname.includes("adduser");
@@ -80,7 +83,10 @@ const Eflayer = () => {
                   value={searchTerm}
                   onChange={handleSearch}
                 />
-                <Search className="absolute left-3 top-2.5 text-gray-400" size={18} />
+                <Search
+                  className="absolute left-3 top-2.5 text-gray-400"
+                  size={18}
+                />
               </div>
               <Link to="/addeflayer">
                 <button className="bg-blue-600 hover:bg-blue-500 text-white hidden sm:block font-semibold py-2 px-4 rounded-lg transition-all duration-300">
@@ -144,12 +150,8 @@ const Eflayer = () => {
                       >
                         Edit
                       </button>
-                      <button
-                  
-                        onClick={() => handleDelete(eflyer._id)}
-
-                      >
-                Delete
+                      <button onClick={() => handleDelete(eflyer._id)}>
+                        Delete
                       </button>
                     </td>
                   </motion.tr>

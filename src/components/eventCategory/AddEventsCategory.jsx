@@ -32,7 +32,7 @@ const AddEventsCategory = () => {
     formData.append("customCanonicalUrl", customCanonicalUrl);
 
     try {
-      await axios.post("http://localhost:8080/api/faqcat", formData, {
+      await axios.post("http://api.pnytrainings.com/api/faqcat", formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
       navigate("/faqs"); // Redirect after successful submission

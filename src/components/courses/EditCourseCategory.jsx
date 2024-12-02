@@ -13,7 +13,9 @@ const EditCourseCategory = () => {
   useEffect(() => {
     // Fetch the category data based on the ID
     axios
-      .get(`http://localhost:8080/api/categories/${id}`, { withCredentials: true })
+      .get(`http://api.pnytrainings.com/api/categories/${id}`, {
+        withCredentials: true,
+      })
       .then((response) => {
         setCategory(response.data);
         setLoading(false);
@@ -42,12 +44,17 @@ const EditCourseCategory = () => {
   const handleUpdate = (e) => {
     e.preventDefault();
     axios
-      .put(`http://localhost:8080/api/categories/${id}`, category, { withCredentials: true })
+      .put(`http://api.pnytrainings.com/api/categories/${id}`, category, {
+        withCredentials: true,
+      })
       .then(() => {
         navigate("/course-categories"); // Redirect to the categories list after updating
       })
       .catch((error) => {
-        console.error("Error updating category:", error.response ? error.response.data : error.message);
+        console.error(
+          "Error updating category:",
+          error.response ? error.response.data : error.message
+        );
         setError("Failed to update category");
       });
   };
@@ -60,7 +67,9 @@ const EditCourseCategory = () => {
       <Header />
 
       <div className="bg-gray-800 p-6 rounded-lg shadow-lg mx-auto mt-8 w-[50%] overflow-auto">
-        <h2 className="text-2xl text-white font-semibold mb-6">Edit Course Category</h2>
+        <h2 className="text-2xl text-white font-semibold mb-6">
+          Edit Course Category
+        </h2>
         <form onSubmit={handleUpdate} className="space-y-4">
           <div>
             <label className="block text-gray-400">Category Name</label>
